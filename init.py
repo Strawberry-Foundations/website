@@ -1,8 +1,15 @@
+import os
+
 import yaml
 from yaml import SafeLoader
 
-with open("config.yml", "r") as config_file:
+server_dir = os.path.dirname(os.path.realpath(__file__))
+
+with open(server_dir + "/config.yml", "r") as config_file:
     config = yaml.load(config_file, Loader=SafeLoader)
+
+with open(server_dir + "/secret.key", "r") as secret_file:
+    secret = secret_file.read()
     
 ip_address          = config["host"]["address"]
 port                = config["host"]["port"]
