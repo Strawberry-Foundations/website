@@ -1,8 +1,13 @@
+# Basic
 test: Deutsch
 login: Anmelden
+logout: Abmelden
 close: Schließen
+
+# Account Dropdown Strings
 settings: Einstellungen
 my_products: Meine Produkte
+cloud_engine: Cloud Engine
 
 # Header Strings
 our_products: Unsere Produkte
@@ -17,3 +22,6 @@ input_password: Passwort
 # Login Error messages
 error_login: Scheinbar Funktioniert hier etwas nicht ...
 wrong_uname_pword: Dein Nutzername oder dein Passwort ist nicht richtig. Überprüfe nochmals deine Eingaben!
+
+# Account settings
+account_settings: Accounteinstellungen
