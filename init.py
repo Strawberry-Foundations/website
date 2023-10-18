@@ -3,6 +3,7 @@ import os
 import yaml
 from yaml import SafeLoader
 
+
 server_dir = os.path.dirname(os.path.realpath(__file__))
 
 with open(server_dir + "/config.yml", "r") as config_file:
@@ -17,7 +18,7 @@ with open(server_dir + "/lang/de_DE.yml", "r") as lang_file:
     
 with open(server_dir + "/lang/en_US.yml", "r") as lang_file:
     en_lang = yaml.load(lang_file, Loader=SafeLoader)
-    
+
 
 ip_address          = config["host"]["address"]
 port                = config["host"]["port"]
