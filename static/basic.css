@@ -9,3 +9,27 @@
 .spacer {
     margin-left: 50px;
 }
+
+.profile-picture {
+    border-radius: 20px;
+    margin-left: 15px;
+    width: 30px;
+}
+
+.invisible-button {
+    display: none;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+.material-symbols-outlined--ul {
+    padding-top: 10px;
+    position: absolute
+}
+  
