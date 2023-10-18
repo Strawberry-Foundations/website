@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="apple-mobile-web-app-status-bar-style" content="#F44336">
+    <meta name="msapplication-navbutton-color" content="#F44336">
+    <meta name="theme-color" content="#F44336">
+    <meta name="color-theme-override" content="#F44336">
+    
+    <meta name="keywords" content="development">
+    <meta name="og:site_name" content="Strawberry Foundations">
+    <meta name="og:title" content="Strawberry Foundations">
+    <meta name="og:description" content="Strawberry Foundations. Universal and simple software">
+    <meta name="og:image" content="http://cdn.strawberrysoftware.ga/logo.png">
+    <meta name="description" content="Strawberry Foundations. Universal and simple software">
+    <meta name="author" content="Strawberry Foundations">
+
+    <meta content="Strawberry Foundations" property="og:title">
+    <meta content="Strawberry Foundations. Universal and simple software" property="og:description">
+
+    <title>Strawberry Foundations</title>
+
+    <link rel="icon" href="/static/sf_logo_small.png"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/basic.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-deep_orange.min.css" /> 
+    
+
+    
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header" style="background-color: rgb(36, 37, 38);">
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout-title" style="font-family: Rubik">
+                    <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
+                    <strong>Strawberry Foundations</strong>
+                </span>
+                <div class="spacer"></div>
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("our_products") }}</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("about_us") }}</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
+                </nav>
+                <div class="mdl-layout-spacer"></div>
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="">
+                      <i class="material-icons">search</i></a>
+                    {% if not is_authenticated %}
+                      <a class="mdl-navigation__link" href="/{{ lang }}/login">{{ loader("login") }}<i class="material-icons" style="margin-left: 5px;">account_circle</i></a>
+                    {% else %}
+                      <button id="demo-menu-lower-right" class="mdl-navigation__link button-nocolor" href="">{{ account_name }}<img src="{{ profile_picture_url }}" class="profile-picture"></button>
+                      
+                      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right" style="width: 300px; border-radius: 20px">
+                        <li style="color: black; padding-left: 20px">
+                          <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo.svg" style="width: 70px;"></a>
+                          <div style="float: right; margin-right: 20px; margin-top: 10px">
+                            @{{ username }} <img src="{{ profile_picture_url }}" class="profile-picture">
+                          </div>
+                        </li>
+                        <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></a></li>
+                        <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">shopping_cart</span><div style="margin-left: 33px">{{ loader("my_products") }}</div></a></li>
+                        <hr>
+                        <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">settings</span><div style="margin-left: 33px">{{ loader("settings") }}</div></a></li>
+                        <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/logout"><span class="material-symbols-outlined material-symbols-outlined--ul">logout</span><div style="margin-left: 33px">{{ loader("logout") }}</div></a></li>
+                      </ul>
+                    {% endif %}
+                </nav>
+            </div>
+        </header>
+
+        <main class="mdl-layout__content">
+            <div class="page-content">
+              <center>
+                <h1 class="slide-in"><strong>{{ loader("account_settings") }}</strong></h1>
+                <div class="mid-left-center">
+                  <div class="profile-box slide-in">
+                    <h2 class="rubik"><a href="{{ profile_picture_url }}"><img src="{{ profile_picture_url }}" class="profile-picture-big"></a>  {{ account_name }}<h6 class="profile-box-username--small rubik">@{{ username }}</h6></h2>
+                  </div>
+                </div>
+              </center>
+              
+            </div>
+        </main>
+    </div>
+    
+</body>
+
+</html>
