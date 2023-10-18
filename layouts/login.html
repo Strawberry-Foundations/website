@@ -50,7 +50,7 @@
                 <center>
                     <h1><strong>{{ loader("login") }}</strong></h1>
 
-                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width: 400px; height: 400px">
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width: 400px; height: 450px">
                         <div class="mdl-card__title">
                             <img src="/static/assets/svg/sf_logo.svg" width="90px">
                         </div>
@@ -67,45 +67,39 @@
                                     <label class="mdl-textfield__label" for="password">{{ loader("input_password") }}</label>
                                 </div>
 
-                                <input class="button-strawberry" type="submit" value="{{ loader('login') }}">
+                                <input id="show-dialog" class="button-strawberry" type="submit" value="{{ loader('login') }}">
                                 <!-- <button id="show-dialog" type="button" class="button-strawberry">{{ loader('login') }}</button> -->
                             </form>
 
                             <h6 class="rubik">{{ loader("create_account") }} <a href="/{{ lang }}/register">{{ loader("create_account_2") }}</a></h6>
                         </div>
-                        <dialog class="mdl-dialog dialog-box">
-                            <h4 class="mdl-dialog__title">Allow data collection?</h4>
-                            <div class="mdl-dialog__content">
-                                <p>
-                                    Allowing us to collect data will let us get you the information you want faster.
-                                </p>
+
+                        <dialog class="mdl-dialog dialog-box" style="margin-top: -110px;">
+                            <h4 class="mdl-dialog__title rubik" style="color: red"><strong>{{ loader("error_login") }}</strong></h4>
+                            <div class="mdl-dialog__content rubik">
+                                <p>{{ loader("wrong_uname_pword") }}</p>
                             </div>
                             <div class="mdl-dialog__actions">
-                                <button type="button" class="mdl-button close dialog-box" style="margin-right: 55px">Close</button>
+                                <button type="button" class="mdl-button close rubik">{{ loader("close") }}</button>
                             </div>
                         </dialog>
-                        <script>
-                            var dialog = document.querySelector('dialog');
-                            var showDialogButton = document.querySelector('#show-dialog');
 
-                            if (! dialog.showModal) {
-                              dialogPolyfill.registerDialog(dialog);
-                            }
-                            
-                            showDialogButton.addEventListener('click', function() {
-                              dialog.showModal();
-                            });
+                        {% if error %}
+                            <script>
+                                var dialog = document.querySelector('dialog');
+                                var showDialogButton = document.querySelector('#show-dialog');
+                                
+                                if (! dialog.showModal) {
+                                    dialogPolyfill.registerDialog(dialog);
+                                }
 
+                                dialog.showModal();
 
-                            dialog.querySelector('.close').addEventListener('click', function() {
-                                dialog.close();
-                            }); 
-                            /* var dialog = document.querySelector('dialog');
-                            dialog.showModal();
-                            dialog.querySelector('.close').addEventListener('click', function () {
-                                dialog.close();
-                            }); */ 
-                        </script>
+                                dialog.querySelector('.close').addEventListener('click', function () {
+                                    dialog.close();
+                                });
+                            </script>
+                        {% endif %}
                     </div>
                 </center>
             </div>
