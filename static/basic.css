@@ -16,6 +16,32 @@
     width: 30px;
 }
 
+.profile-picture-big {
+    border-radius: 50px;
+    margin-right: 10px;
+    width: 100px;   
+}
+
+.profile-box {
+    margin-right: 10px
+}
+
+.mid-left-center {
+    margin-left: -1000px
+}
+
+.mid-right {
+    float: right;
+    margin-right: 300px
+}
+
+.profile-box-username--small {
+    position: relative;
+    margin-top: -40px;
+    margin-left: 124px
+}
+
+
 .invisible-button {
     display: none;
 }
@@ -32,4 +58,4 @@
     padding-top: 10px;
     position: absolute
 }
-  
+
