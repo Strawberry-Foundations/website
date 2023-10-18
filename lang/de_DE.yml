@@ -1,5 +1,6 @@
 test: Deutsch
 login: Anmelden
+close: Schließen
 
 # Header Strings
 our_products: Unsere Produkte
@@ -8,5 +9,9 @@ about_us: Über uns
 # Login Strings
 create_account: Du hast noch keine Strawberry ID? 
 create_account_2: Erstelle eine!
-input_email: E-Mail oder Benutzername
+input_email: E-Mail oder Nutzername
 input_password: Passwort
+
+# Login Error messages
+error_login: Scheinbar Funktioniert hier etwas nicht ...
+wrong_uname_pword: Dein Nutzername oder dein Passwort ist nicht richtig. Überprüfe nochmals deine Eingaben!
