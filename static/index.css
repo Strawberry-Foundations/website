@@ -14,8 +14,25 @@
     font-family: Rubik;
 }
 
-.spacer {
-    margin-left: 50px;
+.dialog-box {
+    background: #fff;
+    width: 60%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slide-in 2s;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(-200%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 /* a:link {
