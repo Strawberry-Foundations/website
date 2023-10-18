@@ -13,5 +13,5 @@ input_email: E-Mail or Username
 input_password: Password
 
 # Login Error messages
-error_login: Scheinbar Funktioniert hier etwas nicht ...
-wrong_uname_pword: Dein Nutzername oder dein Passwort ist nicht richtig. Überprüfe nochmals deine Eingaben!
+error_login: Apparently something is not working here...
+wrong_uname_pword: Your username or password is incorrect correct. Please check your input!
