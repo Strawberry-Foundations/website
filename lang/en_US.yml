@@ -1,8 +1,13 @@
+# Basic
 test: English
 login: Login
+logout: Logout
 close: Close
+
+# Account Dropdown Strings
 settings: Settings
 my_products: My products
+cloud_engine: Cloud Engine
 
 # Header Strings
 our_products: Our Products
@@ -17,3 +22,6 @@ input_password: Password
 # Login Error messages
 error_login: Apparently something is not working here...
 wrong_uname_pword: Your username or password is incorrect correct. Please check your input!
+
+# Account settings
+account_settings: Account settings
