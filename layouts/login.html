@@ -27,6 +27,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/basic.css">
+    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-deep_orange.min.css" /> 
     
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
@@ -37,32 +39,78 @@
         <header class="mdl-layout__header" style="background-color: rgb(36, 37, 38);">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title" style="font-family: Rubik">
-                    <a href="/"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
+                    <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
                     <strong>Strawberry Foundations</strong>
                 </span>
-                <div class="spacer"></div>
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="">{{ loader("our_products") }}</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                </nav>
-                <div class="mdl-layout-spacer"></div>
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="{{ lang }}/login">{{ loader("login") }}</a>
-                </nav>
             </div>
         </header>
 
         <main class="mdl-layout__content">
             <div class="page-content">
-                
-                Login test
-                
+                <center>
+                    <h1><strong>{{ loader("login") }}</strong></h1>
+
+                    <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width: 400px; height: 400px">
+                        <div class="mdl-card__title">
+                            <img src="/static/assets/svg/sf_logo.svg" width="90px">
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            <form action="" method="post">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input name="username" value="{{request.form.username}}" class="mdl-textfield__input" style="font-family: Rubik" type="text" id="login_username">
+                                    <label class="mdl-textfield__label" for="username">{{ loader("input_email") }}</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input name="password" value="{{request.form.password}}" class="mdl-textfield__input" style="font-family: Rubik" type="password" id="login_password">
+                                    <label class="mdl-textfield__label" for="password">{{ loader("input_password") }}</label>
+                                </div>
+
+                                <input class="button-strawberry" type="submit" value="{{ loader('login') }}">
+                                <!-- <button id="show-dialog" type="button" class="button-strawberry">{{ loader('login') }}</button> -->
+                            </form>
+
+                            <h6 class="rubik">{{ loader("create_account") }} <a href="/{{ lang }}/register">{{ loader("create_account_2") }}</a></h6>
+                        </div>
+                        <dialog class="mdl-dialog dialog-box">
+                            <h4 class="mdl-dialog__title">Allow data collection?</h4>
+                            <div class="mdl-dialog__content">
+                                <p>
+                                    Allowing us to collect data will let us get you the information you want faster.
+                                </p>
+                            </div>
+                            <div class="mdl-dialog__actions">
+                                <button type="button" class="mdl-button close dialog-box" style="margin-right: 55px">Close</button>
+                            </div>
+                        </dialog>
+                        <script>
+                            var dialog = document.querySelector('dialog');
+                            var showDialogButton = document.querySelector('#show-dialog');
+
+                            if (! dialog.showModal) {
+                              dialogPolyfill.registerDialog(dialog);
+                            }
+                            
+                            showDialogButton.addEventListener('click', function() {
+                              dialog.showModal();
+                            });
+
+
+                            dialog.querySelector('.close').addEventListener('click', function() {
+                                dialog.close();
+                            }); 
+                            /* var dialog = document.querySelector('dialog');
+                            dialog.showModal();
+                            dialog.querySelector('.close').addEventListener('click', function () {
+                                dialog.close();
+                            }); */ 
+                        </script>
+                    </div>
+                </center>
             </div>
         </main>
     </div>
-    
 </body>
 
 </html>
