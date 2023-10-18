@@ -3,6 +3,7 @@ import os
 import yaml
 from yaml import SafeLoader
 
+import sqlite3 as sql
 
 server_dir = os.path.dirname(os.path.realpath(__file__))
 
