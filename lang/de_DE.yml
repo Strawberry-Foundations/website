@@ -1,3 +1,12 @@
 test: Deutsch
 login: Anmelden
+
+# Header Strings
 our_products: Unsere Produkte
+about_us: Über uns
+
+# Login Strings
+create_account: Du hast noch keine Strawberry ID? 
+create_account_2: Erstelle eine!
+input_email: E-Mail oder Benutzername
+input_password: Passwort
