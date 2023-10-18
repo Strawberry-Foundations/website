@@ -27,7 +27,10 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/basic.css">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-deep_orange.min.css" /> 
+    
+
     
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
@@ -37,19 +40,20 @@
         <header class="mdl-layout__header" style="background-color: rgb(36, 37, 38);">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title" style="font-family: Rubik">
-                    <a href="/"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
+                    <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
                     <strong>Strawberry Foundations</strong>
                 </span>
                 <div class="spacer"></div>
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="">{{ loader("our_products") }}</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("our_products") }}</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("about_us") }}</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
                 </nav>
                 <div class="mdl-layout-spacer"></div>
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="{{ lang }}/login">{{ loader("login") }}</a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}/login"><i class="material-icons">search</i></a>
+                    <a class="mdl-navigation__link" href="/{{ lang }}/login">{{ loader("login") }}<i class="material-icons" style="margin-left: 5px;">account_circle</i></a>
                 </nav>
             </div>
         </header>
@@ -58,6 +62,32 @@
             <div class="page-content">
                 
                 {{ loader('test') }}
+                    <button id="show-dialog" type="button" class="mdl-button">Show Dialog</button>
+                    <dialog class="mdl-dialog dialog-box">
+                      <h4 class="mdl-dialog__title">Allow data collection?</h4>
+                      <div class="mdl-dialog__content">
+                        <p>
+                          Allowing us to collect data will let us get you the information you want faster.
+                        </p>
+                      </div>
+                      <div class="mdl-dialog__actions">
+                        <button type="button" class="mdl-button">Agree</button>
+                        <button type="button" class="mdl-button close">Disagree</button>
+                      </div>
+                    </dialog>
+                    <script>
+                      var dialog = document.querySelector('dialog');
+                      var showDialogButton = document.querySelector('#show-dialog');
+                      if (! dialog.showModal) {
+                        dialogPolyfill.registerDialog(dialog);
+                      }
+                      showDialogButton.addEventListener('click', function() {
+                        dialog.showModal();
+                      });
+                      dialog.querySelector('.close').addEventListener('click', function() {
+                        dialog.close();
+                      });
+                    </script>
                 
             </div>
         </main>
