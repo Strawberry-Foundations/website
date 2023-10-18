@@ -1,6 +1,8 @@
 test: English
 login: Login
 close: Close
+settings: Settings
+my_products: My products
 
 # Header Strings
 our_products: Our Products
