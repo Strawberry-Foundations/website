@@ -6,8 +6,16 @@
     font-family: Rubik;
 }
 
+.mdl-layout__header {
+    background-color: rgb(36, 37, 38);
+}
+
 .rubik-font--default {
     font-family: Rubik;
+}
+
+.spacer {
+    margin-left: 50px;
 }
 
 /* a:link {
