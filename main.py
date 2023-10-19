@@ -51,7 +51,7 @@ def index(lang):
         allowed_ce = result[0]
         
     else:
-        username, profile_picture_url, name = None, None, None
+        username, profile_picture_url, name, allowed_ce = None, None, None, "false"
       
     return render_template('index.html',
                            loader=StringLoader,
@@ -210,12 +210,20 @@ def account(lang):
         return redirect(f"/{lang}/login")
 
     if logged_in(session):
+        db = sql.connect('backend/data.db')
+        c = db.cursor()
+        
         username = session.get("_strawberryid.username")
         profile_picture_url = session.get("_strawberryid.avatarurl")
         name = session.get("_strawberryid.name")
         is_authenticated = True
+        
+        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        result = c.fetchall()
+        allowed_ce = result[0]
+        
     else:
-        username, profile_picture_url, name = None, None, None
+        username, profile_picture_url, name, allowed_ce = None, None, None, "false" 
         
     return render_template('account.html',
                            loader=StringLoader,
@@ -224,7 +232,8 @@ def account(lang):
                            username=username,
                            profile_picture_url=profile_picture_url,
                            account_name=name,
-                           view_type=view_type)
+                           view_type=view_type,
+                           allowed_ce=allowed_ce[0])
 
 
 

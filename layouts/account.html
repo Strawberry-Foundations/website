@@ -68,7 +68,14 @@
                             @{{ username }} <img src="{{ profile_picture_url }}" class="profile-picture">
                           </div>
                         </li>
-                        <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></a></li>
+                        {% if allowed_ce == "true" %}
+                          <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></a></li>
+                        {% else %}
+                          <li id="ce" disabled class="mdl-menu__item round"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></li>
+                          <div class="mdl-tooltip" data-mdl-for="ce">
+                            {{ loader("cloud_engine_deactivated") }}
+                          </div>
+                        {% endif %}
                         <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">shopping_cart</span><div style="margin-left: 33px">{{ loader("my_products") }}</div></a></li>
                         <hr>
                         <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">settings</span><div style="margin-left: 33px">{{ loader("settings") }}</div></a></li>
@@ -78,6 +85,54 @@
                 </nav>
             </div>
         </header>
+
+        {% if view_type == "mobile" %}
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title" style="font-family: Rubik;">
+              <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a><br>
+              <div><strong>Strawberry</strong></div>
+              <div style="margin-top: -25px"><strong>Foundations</strong></div>
+              
+            </span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href=""><i class="material-icons">search</i></a>
+              <hr>
+              <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("our_products") }}</a>
+              <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("about_us") }}</a>
+              <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
+              <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
+              <hr>
+              
+              {% if not is_authenticated %}
+                <a class="mdl-navigation__link" href="/{{ lang }}/login">{{ loader("login") }}<i class="material-icons" style="margin-left: 5px;">account_circle</i></a>
+              {% else %}
+                <button id="demo-menu-lower-left" class="mdl-navigation__link button-nocolor--drawer" href="">{{ account_name }}<img src="{{ profile_picture_url }}" class="profile-picture"></button>
+                
+                <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left" style="width: 239px; border-radius: 20px;">
+                  <li style="color: black; padding-left: 20px">
+                    <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo.svg" style="width: 70px;"></a>
+                    <div style="float: left; margin-right: 20px; margin-top: 10px">
+                      @{{ username }} <img src="{{ profile_picture_url }}" class="profile-picture">
+                    </div>
+                  </li>
+                  <br><br><hr>
+                  {% if allowed_ce == "true" %}
+                    <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></a></li>
+                  {% else %}
+                    <li id="ce" disabled class="mdl-menu__item round"><span class="material-symbols-outlined material-symbols-outlined--ul">dns</span><div style="margin-left: 33px">{{ loader("cloud_engine") }}</div></li>
+                    <div class="mdl-tooltip" data-mdl-for="ce">
+                      {{ loader("cloud_engine_deactivated") }}
+                    </div>
+                  {% endif %}
+                  <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">shopping_cart</span><div style="margin-left: 33px">{{ loader("my_products") }}</div></a></li>
+                  <hr>
+                  <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/account"><span class="material-symbols-outlined material-symbols-outlined--ul">settings</span><div style="margin-left: 33px">{{ loader("settings") }}</div></a></li>
+                  <li class="mdl-menu__item round"><a style="text-decoration: none; color: #1f1f1f" href="/{{ lang }}/logout"><span class="material-symbols-outlined material-symbols-outlined--ul">logout</span><div style="margin-left: 33px">{{ loader("logout") }}</div></a></li>
+                </ul>
+              {% endif %}
+            </nav>
+          </div>
+        {% endif %}
 
         <main class="mdl-layout__content">
             <div class="page-content">
