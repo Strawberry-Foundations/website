@@ -139,61 +139,61 @@
 
         <main class="mdl-layout__content">
             <div class="page-content">
-                {{ loader('test') }}
-                    <button id="show-dialog" type="button" class="mdl-button">Show Dialog</button>
-                    <button id="show-spotify" type="button" class="mdl-button">It's tiiiiiiiime!</button>
+                <div style="margin-left: 50px; margin-top: 50px">
+                    <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #e0e0e0">Show Dialog</button>
+                    <button id="show-spotify" type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">It's tiiiiiiiime!</button>
+                </div>
 
-                    <dialog class="mdl-dialog dialog-box" id="data">
-                      <h4 class="mdl-dialog__title rubik">Allow data collection?</h4>
-                      <div class="mdl-dialog__content">
-                        <p>
-                          Allowing us to collect data will let us get you the information you want faster.
-                        </p>
-                      </div>
-                      <div class="mdl-dialog__actions">                        
-                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">Agree</button>
-                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised close rubik "style="border-radius: 10px; background-color: #e0e0e0">Disagree</button>
-                      </div>
-                    </dialog>
+                  <dialog class="mdl-dialog dialog-box" id="data">
+                    <h4 class="mdl-dialog__title rubik">Allow data collection?</h4>
+                    <div class="mdl-dialog__content">
+                      <p>
+                        Allowing us to collect data will let us get you the information you want faster.
+                      </p>
+                    </div>
+                    <div class="mdl-dialog__actions">                        
+                      <button type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">Agree</button>
+                      <button type="button" class="mdl-button mdl-js-button mdl-button--raised close rubik "style="border-radius: 10px; background-color: #a0e0e0">Disagree</button>
+                    </div>
+                  </dialog>
 
-                    <dialog class="mdl-dialog dialog-box" id="spotify" style="width: 1200px">
-                      <h4 class="mdl-dialog__title rubik">Allow to hear this banger?</h4>
-                      <div class="mdl-dialog__content">
-                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0SvD6EdetxVtXei2JhkV4B?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                      </div>
-                      <div class="mdl-dialog__actions">                        
-                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">Yes!</button>
-                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised close rubik "style="border-radius: 10px; background-color: #e0e0e0">No..</button>
-                      </div>
-                    </dialog>
+                  <dialog class="mdl-dialog dialog-box" id="spotify" style="width: 1200px">
+                    <h4 class="mdl-dialog__title rubik">Allow to hear this banger?</h4>
+                    <div class="mdl-dialog__content">
+                      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0SvD6EdetxVtXei2JhkV4B?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="mdl-dialog__actions">                        
+                      <button type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">Yes!</button>
+                      <button type="button" class="mdl-button mdl-js-button mdl-button--raised close rubik "style="border-radius: 10px; background-color: #e0e0e0">No..</button>
+                    </div>
+                  </dialog>
+
+                  <script>
+                    var dialog = document.querySelector('#data');
+                    var showDialogButton = document.querySelector('#show-dialog');
+                    if (! dialog.showModal) {
+                      dialogPolyfill.registerDialog(dialog);
+                    }
+                    showDialogButton.addEventListener('click', function() {
+                      dialog.showModal();
+                    });
+                    dialog.querySelector('.close').addEventListener('click', function() {
+                      dialog.close();
+                    });
 
 
-                    <script>
-                      var dialog = document.querySelector('#data');
-                      var showDialogButton = document.querySelector('#show-dialog');
-                      if (! dialog.showModal) {
-                        dialogPolyfill.registerDialog(dialog);
-                      }
-                      showDialogButton.addEventListener('click', function() {
-                        dialog.showModal();
-                      });
-                      dialog.querySelector('.close').addEventListener('click', function() {
-                        dialog.close();
-                      });
-
-
-                      var dialogSpotify = document.querySelector('#spotify');
-                      var showSpotifyButton = document.querySelector('#show-spotify');
-                      if (! dialogSpotify.showModal) {
-                        dialogPolyfill.registerDialog(dialogSpotify);
-                      }
-                      showSpotifyButton.addEventListener('click', function() {
-                        dialogSpotify.showModal();
-                      });
-                      dialogSpotify.querySelector('.close').addEventListener('click', function() {
-                        dialogSpotify.close();
-                      });
-                    </script>
+                    var dialogSpotify = document.querySelector('#spotify');
+                    var showSpotifyButton = document.querySelector('#show-spotify');
+                    if (! dialogSpotify.showModal) {
+                      dialogPolyfill.registerDialog(dialogSpotify);
+                    }
+                    showSpotifyButton.addEventListener('click', function() {
+                      dialogSpotify.showModal();
+                    });
+                    dialogSpotify.querySelector('.close').addEventListener('click', function() {
+                      dialogSpotify.close();
+                    });
+                  </script>
             </div>
         </main>
     </div>
