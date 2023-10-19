@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
+* {
+    font-family: Rubik;
+}
+
 .button-strawberry {
     background-color: #ed1c28;
     border: none;
@@ -56,6 +60,26 @@
     border-radius: 15px;
 }
 
+.slide-right {
+    animation: slide-right 2s;
+}
+
+.slide-in {
+    animation: slide-in 2s;
+}
+
+.dialog-box {
+    border-radius: 15px;
+    background: #fff;
+    width: 60%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slide-in-basic 1s;
+}
+
 @keyframes slide-in-login {
     from {
         transform: translateY(-200%);
@@ -64,3 +88,48 @@
         transform: translateY(0);
     }
 } 
+
+@keyframes slide-in-basic {
+    from {
+        transform: translateY(-190%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateY(-500%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-right {
+    from {
+        transform: translateX(-400%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .button-strawberry {
+        background-color: black;
+        border: none;
+        border-radius: 15px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+    }
+}
