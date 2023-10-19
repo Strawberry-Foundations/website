@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, make_response, redirect
+from flask import Flask, render_template, request, session, make_response, redirect, jsonify
 from init import *
 
 from backend.functions import verify_password
@@ -24,21 +24,18 @@ def logged_in(session):
     else:
         return False
 
-# request_counter = 0
-# @app.before_request
-# def count_requests():
-#     global request_counter
-#     request_counter += 1
-    
-# # Route, um die Anzahl der Anfragen anzuzeigen
-# @app.route('/requests')
-# def show_requests():
-#     return f'Anzahl der Anfragen: {request_counter}'
-
+# Index page
 @app.route("/", defaults={'lang': 'en'})
 @app.route('/<string:lang>')
 def index(lang):
+    def StringLoader(str):
+        return strloader(lang, str)
+    
     is_authenticated = False
+    view_type = request.args.get('v')
+    
+    if not view_type:
+        return js_screen_size_script
     
     if logged_in(session):
         username = session.get("_strawberryid.username")
@@ -47,20 +44,29 @@ def index(lang):
         is_authenticated = True
     else:
         username, profile_picture_url, name = None, None, None
-    
-    def StringLoader(str):
-        return strloader(lang, str)
-        
-    return render_template('index.html', loader=StringLoader, lang=lang, is_authenticated=is_authenticated, username=username, profile_picture_url=profile_picture_url, account_name=name)
+      
+    return render_template('index.html',
+                           loader=StringLoader,
+                           lang=lang,
+                           is_authenticated=is_authenticated,
+                           username=username,
+                           profile_picture_url=profile_picture_url,
+                           account_name=name,
+                           view_type=view_type)
+
 
 # Login
 @app.route("/login", defaults={'lang': 'en'}, methods=['GET', 'POST'])
 @app.route('/<string:lang>/login', methods=['GET', 'POST'])
 def login(lang):
-    error = False
-        
     def StringLoader(str):
         return strloader(lang, str)
+    
+    error = False
+    view_type = request.args.get('v')
+    
+    if not view_type:
+        return js_screen_size_script
     
     if request.method == 'POST':
         username = request.form['username']
@@ -100,7 +106,12 @@ def login(lang):
             error = True
             print("Invalid username and/or password!")
         
-    return render_template('login.html', loader=StringLoader, lang=lang, error=error, redirect=redirect)
+    return render_template('login.html', loader=StringLoader,
+                           lang=lang,
+                           error=error,
+                           redirect=redirect,
+                           view_type=view_type)
+
 
 # Logout
 @app.route("/logout", defaults={'lang': 'en'}, methods=['GET', 'POST'])
@@ -114,14 +125,22 @@ async def logout(lang):
     return redirect(f"/{lang}")
 
 
+# Account page
 @app.route("/account", defaults={'lang': 'en'})
 @app.route('/<string:lang>/account')
 def account(lang):
+    def StringLoader(str):
+        return strloader(lang, str)
+    
     is_authenticated = False
+    view_type = request.args.get('v')
+    
+    if not view_type:
+        return js_screen_size_script
+        
     if not logged_in(session):
         print("You must be logged in")
         return redirect(f"/{lang}/login")
-
 
     if logged_in(session):
         username = session.get("_strawberryid.username")
@@ -130,11 +149,15 @@ def account(lang):
         is_authenticated = True
     else:
         username, profile_picture_url, name = None, None, None
-    
-    def StringLoader(str):
-        return strloader(lang, str)
         
-    return render_template('account.html', loader=StringLoader, lang=lang, is_authenticated=is_authenticated, username=username, profile_picture_url=profile_picture_url, account_name=name)
+    return render_template('account.html',
+                           loader=StringLoader,
+                           lang=lang,
+                           is_authenticated=is_authenticated,
+                           username=username,
+                           profile_picture_url=profile_picture_url,
+                           account_name=name,
+                           view_type=view_type)
 
 
 
