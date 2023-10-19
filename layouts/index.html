@@ -39,12 +39,13 @@
 
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header" style="background-color: rgb(36, 37, 38);">
+        <header class="mdl-layout__header header" style="background-color: rgb(36, 37, 38);">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title" style="font-family: Rubik">
                     <a href="/{{ lang }}"><img src="/static/assets/svg/sf_logo_small.svg" width="50px"></a>
                     <strong>Strawberry Foundations</strong>
                 </span>
+
                 <div class="spacer"></div>
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
                     <a class="mdl-navigation__link" href="/{{ lang }}">{{ loader("our_products") }}</a>
@@ -52,6 +53,7 @@
                     <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
                     <a class="mdl-navigation__link" href="/{{ lang }}">Link</a>
                 </nav>
+
                 <div class="mdl-layout-spacer"></div>
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
                     <a class="mdl-navigation__link" href="">
@@ -76,8 +78,21 @@
                       </ul>
                     {% endif %}
                 </nav>
+
             </div>
         </header>
+
+        {% if view_type == "mobile" %}
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+          </div>
+        {% endif %}
 
         <main class="mdl-layout__content">
             <div class="page-content">
