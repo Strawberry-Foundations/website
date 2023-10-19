@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
-* {
-    font-family: Rubik;
-}
-
 .mdl-layout-title {
     font-family: Rubik;
 }
@@ -15,57 +11,3 @@
 .rubik-font--default {
     font-family: Rubik;
 }
-
-.dialog-box {
-    border-radius: 15px;
-    background: #fff;
-    width: 60%;
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    position: relative;
-    animation: slide-in 2s;
-}
-
-.slide-right {
-    animation: slide-right 2s;
-}
-
-.slide-in {
-    animation: slide-in 2s;
-}
-
-@keyframes slide-in {
-    from {
-        transform: translateY(-500%);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slide-right {
-    from {
-        transform: translateX(-400%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* a:link {
-    color: #7ba1ff;
-    background-color: transparent;
-}
-
-a:hover {
-    color: #d2aff3;
-    background-color: transparent;
-}
-
-a:active {  
-    color: #d2aff3;
-    background-color: transparent;
-} */
-
