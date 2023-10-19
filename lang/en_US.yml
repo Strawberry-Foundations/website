@@ -1,6 +1,7 @@
 # Basic
 test: English
 login: Login
+register: Register
 logout: Logout
 close: Close
 
@@ -19,9 +20,20 @@ create_account_2: Create one!
 input_email: E-Mail or Username
 input_password: Password
 
+# Register Strings
+have_account: Don't have a Strawberry ID yet?
+have_account_2: Create one!
+input_username: Username
+input_email: E-Mail (Optional)
+input_name: Name (First and last name) (Optional)
+input_password: Password
+
 # Login Error messages
 error_login: Apparently something is not working here...
 wrong_uname_pword: Your username or password is incorrect correct. Please check your input!
 
 # Account settings
 account_settings: Account settings
+
+# General Error Messages
+cloud_engine_deactivated: This feature has been disabled for you by an administrator.
