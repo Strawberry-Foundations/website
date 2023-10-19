@@ -17,7 +17,7 @@ about_us: Über uns
 # Login Strings
 create_account: Du hast noch keine Strawberry ID? 
 create_account_2: Erstelle eine!
-input_email: E-Mail oder Nutzername
+input_email_username: E-Mail oder Nutzername
 input_password: Passwort
 
 # Register Strings,
