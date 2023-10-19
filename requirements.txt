@@ -1,3 +1,4 @@
 flask
 flask[async]
 pyyaml
+argon2-cffi
