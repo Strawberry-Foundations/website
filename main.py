@@ -13,7 +13,7 @@ def logged_in(session):
     try:
         db = sql.connect('backend/data.db')
         c = db.cursor()
-        c.execute('SELECT * FROM users WHERE account_username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
         logged_in=c.fetchall()
 
     except Exception as e:
@@ -38,10 +38,18 @@ def index(lang):
         return js_screen_size_script
     
     if logged_in(session):
+        db = sql.connect('backend/data.db')
+        c = db.cursor()
+        
         username = session.get("_strawberryid.username")
         profile_picture_url = session.get("_strawberryid.avatarurl")
         name = session.get("_strawberryid.name")
         is_authenticated = True
+        
+        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        result = c.fetchall()
+        allowed_ce = result[0]
+        
     else:
         username, profile_picture_url, name = None, None, None
       
@@ -52,7 +60,8 @@ def index(lang):
                            username=username,
                            profile_picture_url=profile_picture_url,
                            account_name=name,
-                           view_type=view_type)
+                           view_type=view_type,
+                           allowed_ce=allowed_ce[0])
 
 
 # Login
@@ -76,14 +85,14 @@ def login(lang):
         db = sql.connect('backend/data.db')
         c = db.cursor()
         
-        c.execute("SELECT password FROM users WHERE account_username = ?", (username,))
+        c.execute("SELECT password FROM users WHERE username = ?", (username,))
         result = c.fetchone()
         
         if result is not None:
             stored_password = result[0]
             
             if verify_password(stored_password, password):
-                c.execute('SELECT account_username, password, profile_picture_url, name FROM users WHERE account_username = ?', (username,))
+                c.execute('SELECT username, password, profile_picture_url, full_name FROM users WHERE username = ?', (username,))
                 result = c.fetchone()
                 
                 # If username exists, login the user
@@ -107,6 +116,64 @@ def login(lang):
             print("Invalid username and/or password!")
         
     return render_template('login.html', loader=StringLoader,
+                           lang=lang,
+                           error=error,
+                           redirect=redirect,
+                           view_type=view_type)
+
+
+# Register
+@app.route("/register", defaults={'lang': 'en'}, methods=['GET', 'POST'])
+@app.route('/<string:lang>/register', methods=['GET', 'POST'])
+def register(lang):
+    def StringLoader(str):
+        return strloader(lang, str)
+    
+    error = False
+    view_type = request.args.get('v')
+    
+    if not view_type:
+        return js_screen_size_script
+    
+    # if request.method == 'POST':
+    #     username = request.form['username']
+    #     password = request.form['password']
+
+    #     print(f"A login received: {username}:{password}")
+    #     db = sql.connect('backend/data.db')
+    #     c = db.cursor()
+        
+    #     c.execute("SELECT password FROM users WHERE username = ?", (username,))
+    #     result = c.fetchone()
+        
+    #     if result is not None:
+    #         stored_password = result[0]
+            
+    #         if verify_password(stored_password, password):
+    #             c.execute('SELECT username, password, profile_picture_url, name FROM users WHERE username = ?', (username,))
+    #             result = c.fetchone()
+                
+    #             # If username exists, login the user
+    #             if result is not None:
+    #                 username            = result[0]
+    #                 password            = result[1]
+    #                 profile_picture_url = result[2]
+    #                 name                = result[3]
+                    
+    #                 session["_strawberryid.username"] = username
+    #                 session["_strawberryid.password"] = password
+    #                 session["_strawberryid.avatarurl"] = profile_picture_url
+    #                 session["_strawberryid.name"] = name
+                    
+    #                 print("Login successful")
+    #         else:
+    #             error = True
+    #             print("Error while verifing password!")
+    #     else:
+    #         error = True
+    #         print("Invalid username and/or password!")
+        
+    return render_template('register.html', loader=StringLoader,
                            lang=lang,
                            error=error,
                            redirect=redirect,
@@ -163,3 +230,4 @@ def account(lang):
 
 if __name__ == "__main__":
     app.run(host=ip_address, port=port, debug=debug_mode, threaded=threaded)
+    
