@@ -6,6 +6,17 @@ from yaml import SafeLoader
 import sqlite3 as sql
 
 server_dir = os.path.dirname(os.path.realpath(__file__))
+js_screen_size_script = """
+<script>
+if (window.innerWidth < 1040) {
+    (() => window.location.href = window.location.href + '?v=mobile')()
+}
+else if (window.innerWidth > 1040) {
+    (() => window.location.href = window.location.href + '?v=desktop')()
+    }
+</script>
+"""
+
 
 with open(server_dir + "/config.yml", "r") as config_file:
     config = yaml.load(config_file, Loader=SafeLoader)
