@@ -1,0 +1,24 @@
+# request_counter = 0
+# @app.before_request
+# def count_requests():
+#     global request_counter
+#     request_counter += 1
+    
+# # Route, um die Anzahl der Anfragen anzuzeigen
+# @app.route('/requests')
+# def show_requests():
+#     return f'Anzahl der Anfragen: {request_counter}'
+
+# @app.route('/view')
+# def user():
+#     view_type = request.args.get('v')
+#     if not view_type:
+#         return """
+#         <script>
+#         if (window.innerWidth < 1040) {
+#             (() => window.location.href = window.location.href + '?v=mobile')()
+#         }
+#         </script>
+#         """
+        
+#     return f'Viewing on {view_type}'
