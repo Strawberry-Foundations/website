@@ -67,65 +67,6 @@ def index(lang):
                            allowed_ce=allowed_ce[0])
 
 
-# Login
-# @app.route("/login", defaults={'lang': 'en'}, methods=['GET', 'POST'])
-# @app.route('/<string:lang>/login', methods=['GET', 'POST'])
-# def login(lang):
-#     def StringLoader(str):
-#         return strloader(lang, str)
-    
-#     error = False
-#     view_type = request.args.get('v', default=False)
-#     code = request.args.get('code', default='none')
-    
-#     if not view_type:
-#         return js_screen_size_script
-    
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password']
-
-#         print(f"A login received: {username}:{password}")
-#         db = sql.connect('backend/data.db')
-#         c = db.cursor()
-        
-#         c.execute("SELECT password FROM users WHERE username = ?", (username,))
-#         result = c.fetchone()
-        
-#         if result is not None:
-#             stored_password = result[0]
-            
-#             if verify_password(stored_password, password):
-#                 c.execute('SELECT username, password, profile_picture_url, full_name FROM users WHERE username = ?', (username,))
-#                 result = c.fetchone()
-                
-#                 # If username exists, login the user
-#                 if result is not None:
-#                     username            = result[0]
-#                     password            = result[1]
-#                     profile_picture_url = result[2]
-#                     name                = result[3]
-                    
-#                     session["_strawberryid.username"] = username
-#                     session["_strawberryid.password"] = password
-#                     session["_strawberryid.avatarurl"] = profile_picture_url
-#                     session["_strawberryid.name"] = name
-                    
-#                     print("Login successful")
-#             else:
-#                 error = True
-#                 print("Error while verifing password!")
-#         else:
-#             error = True
-#             print("Invalid username and/or password!")
-        
-#     return render_template('login.html', loader=StringLoader,
-#                            lang=lang,
-#                            error=error,
-#                            redirect=redirect,
-#                            view_type=view_type)
-
-
 @app.route("/login", defaults={'lang': 'en'}, methods=['GET', 'POST'])
 @app.route('/<string:lang>/login', methods=['GET', 'POST'])
 def login(lang):
