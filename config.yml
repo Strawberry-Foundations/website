@@ -10,4 +10,4 @@ vars:
   static_url_path: /static
   static_folder: static
   template_folder: layouts
-  strawberry_id_domain: http://192.168.0.157:8082/v1/
+  strawberry_id_domain: https://id.strawberryfoundations.xyz/v1/
