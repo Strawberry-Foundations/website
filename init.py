@@ -9,11 +9,17 @@ server_dir = os.path.dirname(os.path.realpath(__file__))
 js_screen_size_script = """
 <script>
 if (window.innerWidth < 1040) {
-    (() => window.location.href = window.location.href + '?v=mobile')()
+    var urlParams = new URLSearchParams(window.location.href);
+    urlParams = new URLSearchParams();
+    var modifiedURL = location.pathname + "" + urlParams.toString();
+    (() => window.location.href = modifiedURL + '?v=mobile')()
 }
 else if (window.innerWidth > 1040) {
-    (() => window.location.href = window.location.href + '?v=desktop')()
-    }
+    var urlParams = new URLSearchParams(window.location.href);
+    urlParams = new URLSearchParams();
+    var modifiedURL = location.pathname + "" + urlParams.toString();
+    (() => window.location.href = modifiedURL + '?v=desktop')()
+}
 </script>
 """
 
