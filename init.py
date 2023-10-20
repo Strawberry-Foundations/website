@@ -32,15 +32,16 @@ with open(server_dir + "/lang/en_US.yml", "r") as lang_file:
     en_lang = yaml.load(lang_file, Loader=SafeLoader)
 
 
-ip_address          = config["host"]["address"]
-port                = config["host"]["port"]
+ip_address              = config["host"]["address"]
+port                    = config["host"]["port"]
 
-debug_mode          = config["flags"]["debug_mode"]
-threaded            = config["flags"]["threaded"]
+debug_mode              = config["flags"]["debug_mode"]
+threaded                = config["flags"]["threaded"]
 
-static_url_path     = config["vars"]["static_url_path"]
-static_folder       = config["vars"]["static_folder"]
-template_folder     = config["vars"]["template_folder"]
+static_url_path         = config["vars"]["static_url_path"]
+static_folder           = config["vars"]["static_folder"]
+template_folder         = config["vars"]["template_folder"]
+strawberry_id_domain    = config["vars"]["strawberry_id_domain"]
 
 def strloader(lang, string="", argument_1="", argument_2=""):
     match lang:
