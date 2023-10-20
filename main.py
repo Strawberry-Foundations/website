@@ -14,7 +14,8 @@ def logged_in(session):
     try:
         db = sql.connect('backend/data.db')
         c = db.cursor()
-        c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        # c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        c.execute('SELECT * FROM users WHERE username = ?', (session.get("_strawberryid.username"),))
         logged_in=c.fetchall()
 
     except Exception as e:
@@ -46,10 +47,11 @@ def index(lang):
         
         username = session.get("_strawberryid.username")
         profile_picture_url = session.get("_strawberryid.avatarurl")
-        name = session.get("_strawberryid.name")
+        name = session.get("_strawberryid.full_name")
         is_authenticated = True
         
-        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        # c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ?', (session.get("_strawberryid.username"),))
         result = c.fetchall()
         allowed_ce = result[0]
         
@@ -70,7 +72,12 @@ def index(lang):
 @app.route("/login", defaults={'lang': 'en'}, methods=['GET', 'POST'])
 @app.route('/<string:lang>/login', methods=['GET', 'POST'])
 def login(lang):
-    return redirect(f"{strawberry_id_domain}{lang}?redirect=https://strawberryfoundations.xyz&hl={lang}")
+    login_type = request.args.get('lt', default="global")
+
+    if login_type == "local":
+        return redirect(f"{strawberry_id_domain}{lang}?redirect=http://{request.url_root.replace('http://', '').replace('https://', '').replace('/', '')}&hl={lang}")
+    else: 
+        return redirect(f"{strawberry_id_domain}{lang}?redirect=https://strawberryfoundations.xyz&hl={lang}")
 
 
 @app.route("/callback", methods=['GET', 'POST'])
@@ -81,7 +88,13 @@ def callback():
         return redirect("/" + redir_lang)
     
     data = requests.get(strawberry_id_domain + "validate?code=" + quote(request.args["code"])).json()["data"]
-    return data
+    session["_strawberryid.username"]   = data["username"]
+    # session["_strawberryid.password"]   = password
+    session["_strawberryid.email"]      = data["email"]
+    session["_strawberryid.full_name"]  = data["full_name"]
+    session["_strawberryid.avatarurl"]  = data["profile_picture_url"]
+    
+    return redirect(f"/{redir_lang}")
     
 
 # Logout
@@ -91,7 +104,7 @@ async def logout(lang):
     session.pop('_strawberryid.username', None)
     session.pop('_strawberryid.password', None)
     session.pop('_strawberryid.avatarurl', None)
-    session.pop('_strawberryid.name', None)
+    session.pop('_strawberryid.full_name', None)
 
     return redirect(f"/{lang}")
 
@@ -119,10 +132,11 @@ def account(lang):
         
         username = session.get("_strawberryid.username")
         profile_picture_url = session.get("_strawberryid.avatarurl")
-        name = session.get("_strawberryid.name")
+        name = session.get("_strawberryid.full_name")
         is_authenticated = True
         
-        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        # c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ? AND password = ?', (session.get("_strawberryid.username"), session.get("_strawberryid.password")))
+        c.execute('SELECT cloud_engine_enabled FROM users WHERE username = ?', (session.get("_strawberryid.username"),))
         result = c.fetchall()
         allowed_ce = result[0]
         
