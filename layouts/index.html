@@ -141,7 +141,7 @@
             <div class="page-content">
                 <div style="margin-left: 50px; margin-top: 50px">
                     <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #e0e0e0">Show Dialog</button>
-                    <button id="show-spotify" type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">It's tiiiiiiiime!</button>
+                    <!-- <button id="show-spotify" type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">It's tiiiiiiiime!</button> -->
                 </div>
 
                   <dialog class="mdl-dialog dialog-box" id="data">
@@ -157,7 +157,7 @@
                     </div>
                   </dialog>
 
-                  <dialog class="mdl-dialog dialog-box" id="spotify" style="width: 1200px">
+                  <!-- <dialog class="mdl-dialog dialog-box" id="spotify" style="width: 1200px">
                     <h4 class="mdl-dialog__title rubik">Allow to hear this banger?</h4>
                     <div class="mdl-dialog__content">
                       <iframe class="slide-in" style="border-radius:12px" src="https://open.spotify.com/embed/track/0SvD6EdetxVtXei2JhkV4B?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -166,7 +166,7 @@
                       <button type="button" class="mdl-button mdl-js-button mdl-button--raised rubik" style="border-radius: 10px; background-color: #a0e0e0">Yes!</button>
                       <button type="button" class="mdl-button mdl-js-button mdl-button--raised close rubik "style="border-radius: 10px; background-color: #e0e0e0">No..</button>
                     </div>
-                  </dialog>
+                  </dialog> -->
 
                   <script>
                     var dialog = document.querySelector('#data');
@@ -182,7 +182,7 @@
                     });
 
 
-                    var dialogSpotify = document.querySelector('#spotify');
+                    /* var dialogSpotify = document.querySelector('#spotify');
                     var showSpotifyButton = document.querySelector('#show-spotify');
                     if (! dialogSpotify.showModal) {
                       dialogPolyfill.registerDialog(dialogSpotify);
@@ -192,7 +192,7 @@
                     });
                     dialogSpotify.querySelector('.close').addEventListener('click', function() {
                       dialogSpotify.close();
-                    });
+                    }); */
                   </script>
             </div>
         </main>
